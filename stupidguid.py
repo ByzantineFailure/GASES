@@ -1,9 +1,11 @@
 import urllib.request
+import re
+
+scrape_regex='<script type="text/javascript">var omni_guid="([\w\d-]*)";</script>'
 
 def stupidGuid():
-    doc = urllib.request.urlopen("http://www.newguid.com").read()
+    doc = urllib.request.urlopen("http://forums.asp.net/").read()
     encodedDoc = str(doc, encoding="utf8")
-    bindex = encodedDoc.find("<b>");
-    bendindex = encodedDoc.find("</b>");
-
-    return encodedDoc[bindex+3:bendindex];
+    match = re.search(scrape_regex, encodedDoc)
+    print(match)
+    return match.group(1);
