@@ -7,5 +7,4 @@ def stupidGuid():
     doc = urllib.request.urlopen("http://forums.asp.net/").read()
     encodedDoc = str(doc, encoding="utf8")
     match = re.search(scrape_regex, encodedDoc)
-    print(match)
     return match.group(1);
